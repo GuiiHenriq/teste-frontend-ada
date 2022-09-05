@@ -7,30 +7,28 @@ const payloadLogin = {
 }
 
 const services = () => {
-  const getToken = async () => {
-    axios.post(`${apiUrl}/login`, payloadLogin)
+  const authorization = async () => {
+    return await axios.post(`${apiUrl}/login`, payloadLogin)
       .then(function (res) {
-        console.log(res);
+        return { Authorization: `Bearer ${res.data}` }
       })
       .catch(function (error) {
         console.log(error);
-      })
-      .finally(function () {
       });
   }
 
-  let token;
+  let token = undefined;
 
-  const requestToken = async () => {
-    token = await getToken();
+  const getToken = async () => {
+    token = await authorization();
   }
 
   const getCards = async () => {
-    await requestToken();
+    if (!token) await getToken();
 
-    return axios.get(`${apiUrl}/cards`, { headers: token })
+    return await axios.get(`${apiUrl}/cards`, { headers: token })
       .then(function (res) {
-        console.log(res);
+        return res.data;
       })
       .catch(function (error) {
         console.log(error);
@@ -40,11 +38,12 @@ const services = () => {
   }
 
   const createCard = async (card) => {
-    await requestToken();
+    await getToken();
 
-    return axios.post(`${apiUrl}/cards`, card, { headers: token })
+    return await axios.post(`${apiUrl}/cards`, card, { headers: token })
       .then(function (res) {
         console.log(res);
+        return res.data;
       })
       .catch(function (error) {
         console.log(error);
@@ -54,11 +53,12 @@ const services = () => {
   }
 
   const updateCard = async (card) => {
-    await requestToken();
+    await getToken();
 
-    return axios.put(`${apiUrl}/cards/${card.id}`, card, { headers: token })
+    return await axios.put(`${apiUrl}/cards/${card.id}`, card, { headers: token })
       .then(function (res) {
         console.log(res);
+        return res.data
       })
       .catch(function (error) {
         console.log(error);
@@ -68,11 +68,12 @@ const services = () => {
   }
   
   const deleteCard = async (card) => {
-    await requestToken();
+    await getToken();
 
-    return axios.delete(`${apiUrl}/cards/${card.id}`, { headers: token })
+    return await axios.delete(`${apiUrl}/cards/${card.id}`, { headers: token })
       .then(function (res) {
         console.log(res);
+        return res.data;
       })
       .catch(function (error) {
         console.log(error);

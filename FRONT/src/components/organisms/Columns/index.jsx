@@ -7,7 +7,7 @@ const Columns = ({ type, children }) => {
     </ColumnName>
     
     <ColumnList>
-      <p>Card</p>
+      {children}
     </ColumnList>
 </ColumnContainer>
 }
