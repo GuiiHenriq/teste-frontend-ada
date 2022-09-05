@@ -7,14 +7,14 @@ export const Kanban = () => {
     'To-do',
     'Doing',
     'Done'
-  ]
+  ];
 
   return <KanbanContainer>
     <h1>Kanban</h1>
 
     <KanbanList>
       {types.map(type => (
-        <Columns type={type} />
+        <Columns key={type} type={type} />
       ))}
     </KanbanList>
     
