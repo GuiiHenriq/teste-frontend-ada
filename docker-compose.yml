@@ -1,0 +1,18 @@
+version: '2'
+services:
+  front:
+    image: teste-front
+    build:
+      context: ./FRONT/
+      dockerfile: Dockerfile
+    ports:
+      - 5173:5173
+  back:
+    image: teste-back
+    build:
+      context: ./BACK/
+      dockerfile: Dockerfile
+    ports:
+      - 8888:8888
+    links:
+      - front
