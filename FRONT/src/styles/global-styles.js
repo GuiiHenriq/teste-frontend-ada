@@ -15,3 +15,5 @@ export const GlobalStyles = createGlobalStyle`
     -webkit-text-size-adjust: 100%;
   }
 `
+
+export default GlobalStyles;

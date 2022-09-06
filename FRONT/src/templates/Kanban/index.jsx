@@ -7,7 +7,7 @@ import Modal from '../../components/atoms/Modal'
 
 const { getCards, createCard, updateCard, deleteCard } = services();
 
-export const Kanban = () => {
+function Kanban() {
   const [cards, setCards] = useState([]);
   const [activeModal, setActiveModal] = useState(false)
 
@@ -78,7 +78,7 @@ export const Kanban = () => {
         </div>
       </section>
 
-      <button onClick={() => setActiveModal(true)}>
+      <button type="button" onClick={() => setActiveModal(true)}>
         <span>+</span>
         <p>CREATE<br/>CARD</p>
       </button>
@@ -98,3 +98,5 @@ export const Kanban = () => {
     
   </KanbanContainer>
 }
+
+export default Kanban;

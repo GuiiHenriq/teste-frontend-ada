@@ -36,3 +36,5 @@ export const ModalContainer = styled.section`
 	  }
   }
 `;
+
+export default ModalContainer;

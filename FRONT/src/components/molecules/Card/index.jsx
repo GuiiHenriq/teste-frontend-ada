@@ -12,16 +12,15 @@ const markdownDescription = description => DOMPurify.sanitize(marked(description
 const SHOW = 'display';
 const EDIT = 'edit';
 
-export const Card = ({ title, description, updateCard, deleteCard, back, next }) => {
+function Card({ title, description, updateCard, deleteCard, back, next }) {
   const [editTitle, setEditTitle] = useState(title);
   const [editDescription, setEditDescription] = useState(description);
   const [mode, setMode] = useState(SHOW);
 
-  const showCard = (title) => {
-    return (
+  const showCard = () => (
       <CardContainer>
         <CardTitle>{title}</CardTitle>
-        <CardDescription dangerouslySetInnerHTML={{ __html: markdownDescription(description) }}></CardDescription>
+        <CardDescription dangerouslySetInnerHTML={{ __html: markdownDescription(description) }} />
         <CardButtons>
           <div>
             <CardButtonEdit onClick={() => setMode(EDIT)}><FaEdit size={24} /></CardButtonEdit>
@@ -35,9 +34,8 @@ export const Card = ({ title, description, updateCard, deleteCard, back, next })
         </CardButtons>
       </CardContainer>
     );
-  };
 
-  const showEditCard = (title, description) => {
+  const showEditCard = () => {
     const saveEdit = () => {
       updateCard(editTitle, editDescription);
       setMode(SHOW);
@@ -53,7 +51,7 @@ export const Card = ({ title, description, updateCard, deleteCard, back, next })
       <CardContainer>
         <CardEditTitle type='text' onChange={evt => setEditTitle(evt.target.value)} value={editTitle} />
         <CardEditDescription>
-          <CardTextArea onChange={evt => setEditDescription(evt.target.value)} value={editDescription}></CardTextArea>
+          <CardTextArea onChange={evt => setEditDescription(evt.target.value)} value={editDescription} />
         </CardEditDescription>
         <CardButtons>
           <CardButtonCancel onClick={cancelEdit}><MdOutlineCancel size={24} /></CardButtonCancel>
@@ -64,9 +62,9 @@ export const Card = ({ title, description, updateCard, deleteCard, back, next })
   };
 
   return (
-      <>
+      <section>
           {mode === SHOW ? showCard(title, description) : showEditCard(title, description)}
-      </>
+      </section>
   );
 }
 
