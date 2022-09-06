@@ -6,7 +6,7 @@ import { FaEdit } from "react-icons/fa";
 import { AiFillDelete, AiOutlineCheckCircle } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
 import { IoChevronBackCircleOutline, IoChevronForwardCircleOutline } from "react-icons/io5";
-import { CardContainer, CardTitle, CardDescription, CardButtons, CardInput, CardEditContent, CardTextArea } from './styles';
+import { CardContainer, CardTitle, CardDescription, CardButtons, CardEditTitle, CardEditDescription, CardTextArea } from './styles';
 
 const markdownDescription = description => DOMPurify.sanitize(marked(description));
 const SHOW = 'display';
@@ -51,10 +51,10 @@ export const Card = ({ title, description, updateCard, deleteCard, back, next })
 
     return (
       <CardContainer>
-        <CardInput type='text' onChange={evt => setEditTitle(evt.target.value)} value={editTitle} />
-        <CardEditContent>
+        <CardEditTitle type='text' onChange={evt => setEditTitle(evt.target.value)} value={editTitle} />
+        <CardEditDescription>
           <CardTextArea onChange={evt => setEditDescription(evt.target.value)} value={editDescription}></CardTextArea>
-        </CardEditContent>
+        </CardEditDescription>
         <CardButtons>
           <button onClick={cancelEdit}><MdOutlineCancel size={20} /></button>
           <button onClick={saveEdit}><AiOutlineCheckCircle size={20} /></button>

@@ -42,7 +42,6 @@ const services = () => {
 
     return await axios.post(`${apiUrl}/cards`, card, { headers: token })
       .then(function (res) {
-        console.log(res);
         return res.data;
       })
       .catch(function (error) {

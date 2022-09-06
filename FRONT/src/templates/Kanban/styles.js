@@ -19,7 +19,26 @@ export const Header = styled.header`
     cursor: pointer;
 
     &:hover {
-      button {
+      span {
+        background: ${({theme}) => theme.colors.background};
+      }
+    }
+  }
+
+  button {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    p {
+      font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 16px;
+      text-align: left;
+    }
+
+    &:hover {
+      span {
         background: ${({theme}) => theme.colors.background};
       }
     }
@@ -29,15 +48,19 @@ export const Header = styled.header`
     margin-right: 20px;
   }
 
-  button {
+  span {
     background: ${({theme}) => theme.colors.new};
     color: ${({theme}) => theme.colors.white};
     padding: 0;
     width: 40px;
     height: 40px;
-    font-size: 20px;
+    font-size: 24px;
     border-radius: 3px;
     margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
     cursor: pointer;
   }
 `
@@ -55,7 +78,7 @@ export const KanbanList = styled.section`
   padding: 0 20px;
 
   @media screen and (min-width: 1024px) {
-		grid-template-columns: repeat(4, 1fr);
+		grid-template-columns: repeat(3, 1fr);
     grid-template-rows: 1fr;
     grid-column-gap: 15px;
     grid-row-gap: 0px;

@@ -3,14 +3,16 @@ import { Header, KanbanContainer, KanbanList } from './styles';
 import services from '../../services/index';
 import Columns from '../../components/organisms/Columns'
 import Card from '../../components/molecules/Card'
+import Modal from '../../components/atoms/Modal'
 
 const { getCards, createCard, updateCard, deleteCard } = services();
 
 export const Kanban = () => {
   const [cards, setCards] = useState([]);
+  const [activeModal, setActiveModal] = useState(false)
 
-  const setNewCard = list => async (title, description) => {
-    const newCard = { list, title, description };
+  const setNewCard = lista => async (titulo, conteudo) => {
+    const newCard = { lista, titulo, conteudo };
     const savedCard = await createCard(newCard);
     setCards([savedCard, ...cards]);
   }
@@ -38,19 +40,17 @@ export const Kanban = () => {
 
   const changeType = (action, type, id, arr) => async () => {
     const typeAction = getNextIndex(type, arr, action);
-    
+
     const card = cards.find(item => item.id === id);
     if (card) {
       const newCard = { ...card, lista: typeAction };
       const savedCard = await updateCard(newCard);
       const newCards = cards.reduce((res, item) => item.id === savedCard.id ? [...res, savedCard] : [...res, item], []);
-      console.log(newCards)
       setCards(newCards);
     }
   }
 
   const types = [
-    'Novo',
     'ToDo',
     'Doing',
     'Done'
@@ -64,6 +64,8 @@ export const Kanban = () => {
   }, []);
 
   return <KanbanContainer>
+    <Modal createCard={setNewCard('ToDo')} onCloseModal={setActiveModal} active={activeModal} />
+
     <Header>
       <section>
         <div>
@@ -71,15 +73,15 @@ export const Kanban = () => {
         </div>
 
         <div>
-          <button>{cards.length}</button>
+          <span>{cards.length}</span>
           <p>TOTAL<br/>CARDS</p>
         </div>
       </section>
 
-      <div>
-        <button>+</button>
+      <button onClick={() => setActiveModal(true)}>
+        <span>+</span>
         <p>CREATE<br/>CARD</p>
-      </div>
+      </button>
     </Header>
 
     <KanbanList>

@@ -28,7 +28,7 @@ export const CardButtons = styled.div`
     }
 `;
 
-export const CardInput = styled.input`
+export const CardEditTitle = styled.input`
   width: 100%;
   border: 2px solid ${({theme}) => theme.colors.lightgray};
   border-radius: 4px;
@@ -37,6 +37,8 @@ export const CardInput = styled.input`
   padding: 8px;
   box-sizing: border-box;
   transition: .3s;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 14px;
 
   &:focus{
     border-color: ${({theme}) => theme.colors.focus};
@@ -44,7 +46,7 @@ export const CardInput = styled.input`
   }
 `;
 
-export const CardEditContent = styled.div`
+export const CardEditDescription = styled.div`
     width: 100%;
     display: flex;
 `;
@@ -58,6 +60,8 @@ export const CardTextArea = styled.textarea`
   box-sizing: border-box;
   transition: .3s;
   min-height: 100px;
+  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-size: 14px;
 
   &:focus{
     border-color: ${({theme}) => theme.colors.focus};
