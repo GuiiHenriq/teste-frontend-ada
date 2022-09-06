@@ -7,17 +7,13 @@ const payloadLogin = {
 }
 
 const services = () => {
-  const authorization = async () => {
-    return await axios.post(`${apiUrl}/login`, payloadLogin)
-      .then(function (res) {
-        return { Authorization: `Bearer ${res.data}` }
-      })
-      .catch(function (error) {
+  const authorization = async () => axios.post(`${apiUrl}/login`, payloadLogin)
+      .then((res) => ({ Authorization: `Bearer ${res.data}` }))
+      .catch((error) => {
         console.log(error);
-      });
-  }
+      })
 
-  let token = undefined;
+  let token;
 
   const getToken = async () => {
     token = await authorization();
@@ -26,56 +22,46 @@ const services = () => {
   const getCards = async () => {
     if (!token) await getToken();
 
-    return await axios.get(`${apiUrl}/cards`, { headers: token })
-      .then(function (res) {
-        return res.data;
-      })
-      .catch(function (error) {
-        console.log(error);
-      })
-      .finally(function () {
+    return axios.get(`${apiUrl}/cards`, { headers: token })
+      .then((res) => res)
+      .catch((error) => error)
+      .finally(() => {
       });
   }
 
   const createCard = async (card) => {
-    await getToken();
+    if (!token) await getToken();
 
-    return await axios.post(`${apiUrl}/cards`, card, { headers: token })
-      .then(function (res) {
-        return res.data;
-      })
-      .catch(function (error) {
+    return axios.post(`${apiUrl}/cards`, card, { headers: token })
+      .then((res) => res)
+      .catch((error) => {
         console.log(error);
       })
-      .finally(function () {
+      .finally(() => {
       });
   }
 
   const updateCard = async (card) => {
-    await getToken();
+    if (!token) await getToken();
 
-    return await axios.put(`${apiUrl}/cards/${card.id}`, card, { headers: token })
-      .then(function (res) {
-        return res.data;
-      })
-      .catch(function (error) {
+    return axios.put(`${apiUrl}/cards/${card.id}`, card, { headers: token })
+      .then((res) => res)
+      .catch((error) => {
         console.log(error);
       })
-      .finally(function () {
+      .finally(() => {
       });
   }
   
   const deleteCard = async (id) => {
-    await getToken();
+    if (!token) await getToken();
 
-    return await axios.delete(`${apiUrl}/cards/${id}`, { headers: token })
-      .then(function (res) {
-        return res.data;
-      })
-      .catch(function (error) {
+    return axios.delete(`${apiUrl}/cards/${id}`, { headers: token })
+      .then((res) => res)
+      .catch((error) => {
         console.log(error);
       })
-      .finally(function () {
+      .finally(() => {
       });
   }
 
