@@ -12,7 +12,7 @@ export const ModalContainer = styled.section`
   opacity: 0;
   pointer-events: none;
   transition: all 0.3s;
-  color: black;
+  color: ${({theme}) => theme.colors.black};
 
   &.active {
     visibility: visible;
@@ -21,14 +21,18 @@ export const ModalContainer = styled.section`
   }
   
   & > div {
-    width: 400px;
+    width: 80%;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     padding: 2em;
-    background: white;
-    border-left: 4px solid ${({theme}) => theme.colors.doing};
+    background: ${({theme}) => theme.colors.white};
+    border-left: 4px solid ${({theme}) => theme.colors.yellow};
     box-shadow: 0 0 5px rgba(0,0,0,.2);
+
+    @media screen and (min-width: 1024px) {
+      width: 400px;
+	  }
   }
 `;

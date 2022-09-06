@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { ModalContainer } from './styles';
-import { CardEditTitle, CardEditDescription, CardTextArea, CardButtons } from '../../molecules/Card/styles';
+import { CardEditTitle, CardEditDescription, CardTextArea, CardButtons, CardButtonCancel, CardButtonSave } from '../../molecules/Card/styles';
 import { AiOutlineCheckCircle } from "react-icons/ai";
 import { MdOutlineCancel } from "react-icons/md";
 
@@ -27,8 +27,8 @@ const Modal = ({ createCard, onCloseModal, active }) => {
           <CardTextArea onChange={evt => setDescription(evt.target.value)} value={description} placeholder="Descrição"></CardTextArea>
         </CardEditDescription>
         <CardButtons>
-          <button onClick={handleClose}><MdOutlineCancel size={20} /></button>
-          <button onClick={create}><AiOutlineCheckCircle size={20} /></button>
+          <CardButtonCancel onClick={handleClose}><MdOutlineCancel size={24} /></CardButtonCancel>
+          <CardButtonSave onClick={create}><AiOutlineCheckCircle size={24} /></CardButtonSave>
         </CardButtons>
       </div>
     </ModalContainer>

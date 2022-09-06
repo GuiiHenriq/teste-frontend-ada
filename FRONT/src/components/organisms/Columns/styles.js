@@ -18,7 +18,7 @@ export const ColumnList = styled.ul`
 `;
 
 export const ColumnName = styled.h3`
-  background: ${({theme}) => theme.colors.doing};
+  background: ${({theme}) => theme.colors.yellow};
   border-bottom: 2px solid rgba(0,0,0,0.1);
   padding: 15px 10px;
 `;

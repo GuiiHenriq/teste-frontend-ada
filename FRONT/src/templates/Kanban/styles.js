@@ -49,7 +49,7 @@ export const Header = styled.header`
   }
 
   span {
-    background: ${({theme}) => theme.colors.new};
+    background: ${({theme}) => theme.colors.red};
     color: ${({theme}) => theme.colors.white};
     padding: 0;
     width: 40px;
