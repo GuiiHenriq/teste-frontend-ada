@@ -1,11 +1,48 @@
 import styled from 'styled-components';
 
-export const KanbanContainer = styled.div`
-  h1 {
-    text-align: center;
-    padding: 20px 0 10px 0;
-    border-bottom: 1px solid ${({theme}) => theme.colors.white};
+export const Header = styled.header`
+  display: flex;
+  align-items: center;
+  background: ${({theme}) => theme.colors.white};
+  color: ${({theme}) => theme.colors.background};
+  padding: 15px 10px;
+  justify-content: space-between;
+
+  section {
+    display: flex;
+    align-items: center;
   }
+
+  div {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+
+    &:hover {
+      button {
+        background: ${({theme}) => theme.colors.background};
+      }
+    }
+  }
+
+  h1 {
+    margin-right: 20px;
+  }
+
+  button {
+    background: ${({theme}) => theme.colors.new};
+    color: ${({theme}) => theme.colors.white};
+    padding: 0;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+    border-radius: 3px;
+    margin-right: 8px;
+    cursor: pointer;
+  }
+`
+
+export const KanbanContainer = styled.div`
 `
 
 export const KanbanList = styled.section`

@@ -57,8 +57,7 @@ const services = () => {
 
     return await axios.put(`${apiUrl}/cards/${card.id}`, card, { headers: token })
       .then(function (res) {
-        console.log(res);
-        return res.data
+        return res.data;
       })
       .catch(function (error) {
         console.log(error);
@@ -67,12 +66,11 @@ const services = () => {
       });
   }
   
-  const deleteCard = async (card) => {
+  const deleteCard = async (id) => {
     await getToken();
 
-    return await axios.delete(`${apiUrl}/cards/${card.id}`, { headers: token })
+    return await axios.delete(`${apiUrl}/cards/${id}`, { headers: token })
       .then(function (res) {
-        console.log(res);
         return res.data;
       })
       .catch(function (error) {
